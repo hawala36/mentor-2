@@ -42,7 +42,7 @@
     .form .section {
       max-width: var(--sectionMobileWidth);
       background-color: var(--White);
-      margin: -76px auto;
+      margin: -86px auto;
       z-index: 1;
       padding: 40px 20px;
       padding-top: 20px;
@@ -75,7 +75,7 @@
     }
     .form #add-ons .adds .add {
       width: 100%;
-      padding: 10px 15px;
+      padding: 15px;
     }
     .form #add-ons .adds .add .add-prive {
       font-size: 14px;
