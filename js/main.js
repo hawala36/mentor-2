@@ -6,7 +6,7 @@ let prEmail = document.getElementById("email");
 let prphone = document.getElementById("phone");
 let divInputs = document.querySelectorAll(".input");
 let labels = document.querySelectorAll(".input label.title");
-let allButtonsContainer = document.querySelectorAll(".buttons-container")
+let allButtonsContainer = document.querySelectorAll(".buttons-container");
 let AllNextStep = document.querySelectorAll(".next-step");
 //Active step number function
 function changeActiveNumber() {
@@ -22,15 +22,21 @@ function changeActiveNumber() {
 changeActiveNumber();
 //All next step default operations function
 allStyles = getComputedStyle(document.documentElement);
-document.documentElement.style.setProperty("--maxWidthResponsive",`${screen.width+1}px`)
-document.documentElement.style.setProperty("--maxSectionWidthResponsive",`${screen.width - 40}px`)
-console.log(allStyles.getPropertyValue("--maxSectionWidthResponsive"))
-console.log(allStyles.getPropertyValue("--maxWidthResponsive"))
+document.documentElement.style.setProperty(
+  "--maxWidthResponsive",
+  `${screen.width + 1}px`
+);
+document.documentElement.style.setProperty(
+  "--maxSectionWidthResponsive",
+  `${screen.width - 40}px`
+);
+console.log(allStyles.getPropertyValue("--maxSectionWidthResponsive"));
+console.log(allStyles.getPropertyValue("--maxWidthResponsive"));
 let SectionTransitionDuration = allStyles.getPropertyValue(
   "--sectionTransitionDuration"
 );
-let container = document.querySelector(".container")
-let containerRec = container.getBoundingClientRect()
+let container = document.querySelector(".container");
+let containerRec = container.getBoundingClientRect();
 function defaultNextStep() {
   for (let i = 0; i < allSections.length; i++) {
     if (allSections[i].classList.contains("active")) {
@@ -40,7 +46,6 @@ function defaultNextStep() {
       setTimeout(() => {
         allSections[i].style.cssText = "display:none;";
         allSections[i + 1].style.display = "block";
-       
       }, parseInt(SectionTransitionDuration) * 1000);
       break;
     }
@@ -104,7 +109,6 @@ AllNextStep[0].onclick = function () {
   defaultNextStep();
 };
 
-
 //Second Section
 
 //plan selection
@@ -159,7 +163,6 @@ plans.forEach((plan) => {
 });
 
 //period selection
-
 
 planPeriods.forEach((period) => {
   if (period.getAttribute("id") === "monthly") {
@@ -342,7 +345,6 @@ let finalPlan = document.querySelector(".bills .selected-plan");
 let finalPlanPrice = document.querySelector(".bills .plan-bill-price");
 let addBills;
 
-
 //Total bill
 let totalCost = document.querySelector(".total-cost");
 let totalCostText = document.querySelector(".total-cost .total-text");
@@ -351,17 +353,16 @@ let totalCostPrice = document.querySelector(".total-cost .total-price");
 let confirmButton = document.querySelector(".confirm");
 let completeSection = document.getElementById("complete");
 
-
 let selectedAddsArray = [];
 let totalAddsPrice = 0;
 AllNextStep[2].onclick = function () {
-  selectedAddsArray=[];
+  selectedAddsArray = [];
   for (let i = 0; i < adds.length; i++) {
     if (adds[i].classList.contains("selected")) {
       selectedAddsArray.push(adds[i].getAttribute("id"));
     }
   }
-   totalAddsPrice = 0;
+  totalAddsPrice = 0;
   for (let i = 0; i < selectedAddsArray.length; i++) {
     totalAddsPrice += addsObject[selectedAddsArray[i]][`${paymentPeriod}Price`];
   }
@@ -373,10 +374,10 @@ AllNextStep[2].onclick = function () {
 
   adds.forEach((add) => {
     if (add.classList.contains("selected")) {
-          let addBill = document.createElement("div");
-       addBill.classList.add("add-bill");
-       let addBillText = document.createElement("span");
-        addBillText.classList.add("add-bill-text");
+      let addBill = document.createElement("div");
+      addBill.classList.add("add-bill");
+      let addBillText = document.createElement("span");
+      addBillText.classList.add("add-bill-text");
       addBillText.textContent = addsObject[add.getAttribute("id")].name;
       let addBillPrice = document.createElement("span");
       addBillPrice.classList.add("add-bill-price");
@@ -396,7 +397,6 @@ AllNextStep[2].onclick = function () {
       addBill.appendChild(addBillPrice);
       finlAddsBill.appendChild(addBill);
       addBills = document.querySelectorAll(".add-bill");
-        
     }
   });
   if (paymentPeriod === "monthly") {
@@ -409,205 +409,78 @@ AllNextStep[2].onclick = function () {
   defaultNextStep();
 };
 
-
 confirmButton.onclick = function () {
   defaultNextStep();
 };
 
 //Go Back button
-for(let i=0;i < allSections.length ; i++){
-  if(i < allSections.length-1 && i !== 0){
-    let goBackButton = document.createElement("span")
-    goBackButton.className = "go-back"
-    goBackButton.textContent = "Go Back"   
-    allButtonsContainer[i].appendChild(goBackButton)
-    allButtonsContainer[i].style.justifyContent = "space-between"
+for (let i = 0; i < allSections.length; i++) {
+  if (i < allSections.length - 1 && i !== 0) {
+    let goBackButton = document.createElement("span");
+    goBackButton.className = "go-back";
+    goBackButton.textContent = "Go Back";
+    allButtonsContainer[i].appendChild(goBackButton);
+    allButtonsContainer[i].style.justifyContent = "space-between";
   }
 }
 
-let goBack = document.querySelectorAll(".go-back")
+let goBack = document.querySelectorAll(".go-back");
 
 goBack.forEach((button) => {
-  button.onclick = function(){
-    for(let i=0 ; i < allSections.length ; i++){
-        if(allSections[i].classList.contains("active")){
-          allSections[i].classList.remove("active")
-          allSections[i].style.display = "none"
-          allSections[i-1].classList.add("active")
-          allSections[i-1].style.cssText = "animation-direction:backwards;display:block;"
-          
-          
-          activeStepNum.forEach((num) => {
-            num.classList.remove("active");
+  button.onclick = function () {
+    for (let i = 0; i < allSections.length; i++) {
+      if (allSections[i].classList.contains("active")) {
+        allSections[i].classList.remove("active");
+        allSections[i].style.display = "none";
+        allSections[i - 1].classList.add("active");
+        allSections[i - 1].style.cssText =
+          "animation-direction:backwards;display:block;";
+
+        activeStepNum.forEach((num) => {
+          num.classList.remove("active");
+        });
+        activeStepNum[i - 1].classList.add("active");
+        if (i > 1) {
+          addBills.forEach((bill) => {
+            bill.remove();
           });
-          activeStepNum[i-1].classList.add("active")
-          if(i > 1 ){
-            
-              addBills.forEach((bill) => {
-                bill.remove()
-              })
-            
-          }
         }
+      }
     }
-  }
-})
+  };
+});
 
 // let buttonContainerRec = allButtonsContainer[0].getBoundingClientRect();
 // console.log(buttonContainerRec)
 
-let headElement = document.head
-if(outerWidth <= 600){
-  let mobileCss = document.createElement("link")  
-  mobileCss.textContent = `
-    .form{
-        background-color: var(--Magnolia);
-        padding: 0;
-        .section-details {
-            margin-bottom: 40px;
-            .section-title{
-                margin: 10px 0px;
-                margin-top: 0;
-                font-size: 25px;
-            }
-        }
-        .container{
-            flex-direction: column;
-    min-width: 100%;
-    background-color: var(--Magnolia);
-    padding: 0;
-    border-radius: 0;
-    gap: 0;
-    left: 0;
-    top: 0;
-    position: relative;
-    transform: none;
-    height: 100%;
-
-    .steps{
-    flex-direction:row;
-    height: 150px;
-    background-position: bottom;
-    width: 100%;
-    background-size: cover;
-    border-radius: 0;
-    justify-content: center;
-    z-index: 0;
-    align-items: flex-start;
-        .step .text-content{
-            display: none;
-        }
-    } 
-        
-        }
-        .section{
-                max-width: ${outerWidth - 40}px ;
-                background-color: var(--White);
-                margin: -60px auto;
-                z-index: 1;
-                padding: 40px 20px;
-                padding-top: 20px;
-                border-radius: 10px;
-
-                .buttons-container{
-                    padding: 20px;
-                    bottom: 0;
-                    transform: translateY(100% + 20px);
-                    right: 0px;
-                    background-color: var(--White);
-                    
-                    
-                }
-
-                .next-step{
-                    bottom: -20px;
-                    border-radius: 5px;
-                }
-                
-                .go-back{
-                    bottom: -20px;
-                    padding: 12px 20px;
-                }
-
-            }
-
-            #plan{
-                .plans-types{
-                    flex-direction: column;
-                    gap: 15px;
-                    .plan-type{
-                        flex-direction: row;
-                           width: 100%;
-                           padding: 15px;
-                    }
-                }
-            }
-
-            #add-ons{
-                .adds{
-                     .add{
-                        width: 100%;
-                        padding: 10px 15px; .add-prive{
-                            font-size: 14px;
-                        }
-                        .service .text-content{
-                            h4{
-                                font-size: 15px;
-                            }
-                            
-                            p{
-                                font-size: 14px;
-
-                            }
-                        } 
-                            
-                            
-                     }
-                }
-            }
-
-            #summary .bills{
-                width: 100%;
-            }
-
-            #complete{
-                min-width: auto;
-                .finishing-up{
-                    width: auto;
-                position: static;
-                transform: none;
-                }
-                
-            }
-    }      
-`
+let headElement = document.head;
+if (outerWidth <= 600) {
+  let mobileCss = document.createElement("link");
   mobileCss.href = `css/mentor2Mobile.css`;
   mobileCss.rel = `stylesheet`;
-  headElement.append(mobileCss)
-  document.documentElement.style.setProperty("--sectionMobileWidth",`${outerWidth-40}px`)
+  headElement.append(mobileCss);
+  document.documentElement.style.setProperty(
+    "--sectionMobileWidth",
+    `${outerWidth - 40}px`
+  );
 }
 
-let changeButton = document.querySelector(".change-plan")
-let planSection = document.getElementById("plan")
-console.log(SectionTransitionDuration)
-changeButton.onclick = function(){
+let changeButton = document.querySelector(".change-plan");
+let planSection = document.getElementById("plan");
+console.log(SectionTransitionDuration);
+changeButton.onclick = function () {
   allSections.forEach((section) => {
-    section.classList.remove("active")
-      section.style.display = "none"
-      planSection.classList.add("active")
-      planSection.style.cssText += "display:block;"
-      planSection.style.cssText +=`logInSection var(--sectionTransitionDuration) forwards ease-out,logOutSection var(--sectionTransitionDuration) forwards ease-out paused;`
-      activeStepNum.forEach((num) => {
-        num.classList.remove("active")
-      })
-    
-  })
-  activeStepNum[1].classList.add("active")
+    section.classList.remove("active");
+    section.style.display = "none";
+    planSection.classList.add("active");
+    planSection.style.cssText += "display:block;";
+    planSection.style.cssText += `logInSection var(--sectionTransitionDuration) forwards ease-out,logOutSection var(--sectionTransitionDuration) forwards ease-out paused;`;
+    activeStepNum.forEach((num) => {
+      num.classList.remove("active");
+    });
+  });
+  activeStepNum[1].classList.add("active");
   addBills.forEach((bill) => {
-    bill.remove()
-  })
-}
-
-
-  
-
+    bill.remove();
+  });
+};
