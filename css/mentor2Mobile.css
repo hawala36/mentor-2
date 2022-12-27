@@ -11,6 +11,8 @@
       font-size: 25px;
     }
     .form .container {
+      display: block;
+      height: auto;
       flex-direction: column;
       min-width: 100%;
       background-color: var(--Magnolia);
@@ -21,11 +23,11 @@
       top: 0;
       position: relative;
       transform: none;
-      height: 100%;
     }
     .form .container .steps {
+      background-image: url(../images/bg-sidebar-mobile.svg);
       flex-direction: row;
-      height: 150px;
+      height: 172px;
       background-position: bottom;
       width: 100%;
       background-size: cover;
@@ -40,16 +42,17 @@
     .form .section {
       max-width: var(--sectionMobileWidth);
       background-color: var(--White);
-      margin: -60px auto;
+      margin: -76px auto;
       z-index: 1;
       padding: 40px 20px;
       padding-top: 20px;
       border-radius: 10px;
     }
     .form .section .buttons-container {
+      position: static;
       padding: 20px;
       bottom: 0;
-      transform: translateY(calc(100% + 20px));
+      transform: translateY(calc(20px));
       right: 0px;
       background-color: var(--White);
     }
