@@ -91,13 +91,13 @@
     }
     .form #complete {
       min-width: auto;
-      min-height: 300px;
+     
     }
     .form #complete .finishing-up {
       width: auto;
       position: static;
       transform: none;
-      height: 100%;
+      
     }
   
     
