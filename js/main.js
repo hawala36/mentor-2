@@ -38,6 +38,8 @@ let SectionTransitionDuration = allStyles.getPropertyValue(
 let container = document.querySelector(".container");
 let containerRec = container.getBoundingClientRect();
 function defaultNextStep() {
+  scrollTo(0,0)
+  
   for (let i = 0; i < allSections.length; i++) {
     if (allSections[i].classList.contains("active")) {
       allSections[i].classList.remove("active");
